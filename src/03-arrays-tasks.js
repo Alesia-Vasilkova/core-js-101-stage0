@@ -20,7 +20,7 @@
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
 function findElement(arr, value) {
-  const result1 = arr[value];
+  const result1 = arr.indexOf(value);
   return result1;
 }
 
@@ -35,8 +35,9 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = Array.from({ length: len });
+  return arr.map((_elem, i) => i * 2 + 1, []);
 }
 
 /**
@@ -51,8 +52,9 @@ function generateOdds(/* len */) {
  *    [0, 1, 2, 3, 4, 5] => [0, 1, 2, 3, 4, 5,   0, 1, 2, 3, 4, 5]
  *    [] => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+function doubleArray(arr) {
+  const newArr = [...arr, ...arr];
+  return newArr;
 }
 
 /**
@@ -66,8 +68,14 @@ function doubleArray(/* arr */) {
  *    [-1, 2, -5, -4, 0] => [ 2 ]
  *    [] => []
  */
-function getArrayOfPositives(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfPositives(arr) {
+  const newArr = arr.reduce((acc, num) => {
+    if (num > 0) {
+      acc.push(num);
+    }
+    return acc;
+  }, []);
+  return newArr;
 }
 
 /**
@@ -81,8 +89,9 @@ function getArrayOfPositives(/* arr */) {
  *    [ 1, 2, 3, 4, 5 ] => []
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
-function getArrayOfStrings(/* arr */) {
-  throw new Error('Not implemented');
+function getArrayOfStrings(arr) {
+  const findStrings = arr.filter((item) => typeof item === 'string');
+  return findStrings || [];
 }
 
 /**
@@ -98,8 +107,10 @@ function getArrayOfStrings(/* arr */) {
  *    [ 1, 2, 3, 4, 5, 'false' ]         => [ 1, 2, 3, 4, 5, 'false' ]
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+function removeFalsyValues(arr) {
+  const wrong = [false, null, 0, '', undefined, NaN];
+  const filtValues = arr.filter((elem) => !wrong.includes(elem));
+  return filtValues || [];
 }
 
 /**
@@ -113,8 +124,11 @@ function removeFalsyValues(/* arr */) {
  *    => [ 'PERMANENT-INTERNSHIP', 'GLUTINOUS-SHRIEK', 'MULTIPLICATIVE-ELEVATION' ],
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
-function getUpperCaseStrings(/* arr */) {
-  throw new Error('Not implemented');
+function getUpperCaseStrings(arr) {
+  const strArr = arr.join(', ');
+  const upStr = strArr.toUpperCase();
+  const newArr = upStr.split(', ');
+  return newArr;
 }
 
 /**
@@ -361,8 +375,13 @@ function getFalsyValuesCount(/* arr */) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  return arr.reduce((acc, elem) => {
+    if (elem === item) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0);
 }
 
 /**
